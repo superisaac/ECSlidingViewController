@@ -82,6 +82,7 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 @synthesize shouldAllowUserInteractionsWhenAnchored;
 @synthesize shouldAddPanGestureRecognizerToTopViewSnapshot;
 @synthesize resetStrategy = _resetStrategy;
+@synthesize slidingDuration;
 
 // category properties
 @synthesize topViewSnapshot;
@@ -173,6 +174,7 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.slidingDuration = 0.25f;
   self.shouldAllowPanningPastAnchor = YES;
   self.shouldAllowUserInteractionsWhenAnchored = NO;
   self.shouldAddPanGestureRecognizerToTopViewSnapshot = NO;
@@ -304,7 +306,7 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   
   [self topViewHorizontalCenterWillChange:newCenter];
   
-  [UIView animateWithDuration:0.25f animations:^{
+  [UIView animateWithDuration:self.slidingDuration animations:^{
     if (animations) {
       animations();
     }
@@ -344,7 +346,7 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   
   [self topViewHorizontalCenterWillChange:newCenter];
   
-  [UIView animateWithDuration:0.25f animations:^{
+  [UIView animateWithDuration:self.slidingDuration animations:^{
     if (animations) {
       animations();
     }
@@ -374,7 +376,7 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
 {
   [self topViewHorizontalCenterWillChange:self.resettedCenter];
   
-  [UIView animateWithDuration:0.25f animations:^{
+  [UIView animateWithDuration:self.slidingDuration animations:^{
     if (animations) {
       animations();
     }

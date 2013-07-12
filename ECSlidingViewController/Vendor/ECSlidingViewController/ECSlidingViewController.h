@@ -131,6 +131,11 @@ typedef enum {
  */
 @property (nonatomic, assign) BOOL shouldAllowUserInteractionsWhenAnchored;
 
+/** Specifies the sliding duration of animations so that the speed is adjustable
+ By default, it is 0.25f second
+ */
+@property (nonatomic, assign) CGFloat slidingDuration;
+
 /** Specifies if the top view snapshot requires a pan gesture recognizer.
  
  This is useful when panGesture is added to the navigation bar instead of the main view.
@@ -172,6 +177,7 @@ typedef enum {
  @param side The side for the top view to slide towards.
  */
 - (void)anchorTopViewTo:(ECSide)side;
+
 
 /** Slides the top view in the direction of the specified side.
  
