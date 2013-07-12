@@ -171,10 +171,17 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   _underRightWidthLayout = underRightWidthLayout;
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.slidingDuration = 0.25f;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.slidingDuration = 0.25f;
   self.shouldAllowPanningPastAnchor = YES;
   self.shouldAllowUserInteractionsWhenAnchored = NO;
   self.shouldAddPanGestureRecognizerToTopViewSnapshot = NO;
