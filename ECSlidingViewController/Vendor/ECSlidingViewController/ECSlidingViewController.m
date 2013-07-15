@@ -12,6 +12,8 @@ NSString *const ECSlidingViewUnderRightWillAppear    = @"ECSlidingViewUnderRight
 NSString *const ECSlidingViewUnderLeftWillAppear     = @"ECSlidingViewUnderLeftWillAppear";
 NSString *const ECSlidingViewUnderLeftWillDisappear  = @"ECSlidingViewUnderLeftWillDisappear";
 NSString *const ECSlidingViewUnderRightWillDisappear = @"ECSlidingViewUnderRightWillDisappear";
+NSString *const ECSlidingViewTopWillAnchorLeft        = @"ECSlidingViewTopWillAnchorLeft";
+NSString *const ECSlidingViewTopWillAnchorRight       = @"ECSlidingViewTopWillAnchorRight";
 NSString *const ECSlidingViewTopDidAnchorLeft        = @"ECSlidingViewTopDidAnchorLeft";
 NSString *const ECSlidingViewTopDidAnchorRight       = @"ECSlidingViewTopDidAnchorRight";
 NSString *const ECSlidingViewTopWillReset            = @"ECSlidingViewTopWillReset";
@@ -310,7 +312,11 @@ NSString *const ECSlidingViewTopDidReset             = @"ECSlidingViewTopDidRese
   } else if (side == ECRight) {
     newCenter = self.anchorRightTopViewCenter;
   }
-  
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *key = (side == ECLeft) ? ECSlidingViewTopWillAnchorLeft : ECSlidingViewTopWillAnchorRight;
+        [[NSNotificationCenter defaultCenter] postNotificationName:key object:self userInfo:nil];
+    });
+    
   [self topViewHorizontalCenterWillChange:newCenter];
   
   [UIView animateWithDuration:self.slidingDuration animations:^{
